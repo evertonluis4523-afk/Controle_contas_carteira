@@ -1,7 +1,6 @@
 // Geração de relatórios: PDF (jsPDF), Excel (ExcelJS) e CSV.
-import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
-import ExcelJS from 'exceljs';
+// jsPDF/jspdf-autotable/ExcelJS são carregados sob demanda (import dinâmico)
+// para não pesarem no bundle inicial — evita travar celulares na abertura.
 import type { Account, Category, Transaction } from '../models/types';
 import { formatCurrency, formatDate } from '../utils/format';
 
@@ -40,7 +39,9 @@ function download(blob: Blob, name: string): void {
   URL.revokeObjectURL(url);
 }
 
-export function exportPDF(data: ReportData): void {
+export async function exportPDF(data: ReportData): Promise<void> {
+  const { default: jsPDF } = await import('jspdf');
+  const { default: autoTable } = await import('jspdf-autotable');
   const doc = new jsPDF();
   const t = totals(data.transactions);
   doc.setFontSize(18);
@@ -64,6 +65,7 @@ export function exportPDF(data: ReportData): void {
 }
 
 export async function exportExcel(data: ReportData): Promise<void> {
+  const { default: ExcelJS } = await import('exceljs');
   const wb = new ExcelJS.Workbook();
   const ws = wb.addWorksheet('Relatório');
   ws.columns = [

@@ -30,7 +30,7 @@ export default function Login() {
   return (
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 24 }}>
       <div style={{ textAlign: 'center' }}>
-        <img src="/icons/icon.svg" alt="" width={72} height={72} />
+        <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="" width={72} height={72} />
         <h1 style={{ marginTop: 12 }}>Digite seu PIN</h1>
         <p className="muted">Seus dados ficam protegidos neste dispositivo</p>
         <motion.div

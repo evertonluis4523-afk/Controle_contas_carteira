@@ -86,7 +86,7 @@ export default function Reports() {
   const reportData = { title, transactions: filtered, categories, accounts };
 
   async function doExport(kind: 'pdf' | 'xlsx' | 'csv' | 'share' | 'print') {
-    if (kind === 'pdf') exportPDF(reportData);
+    if (kind === 'pdf') await exportPDF(reportData);
     if (kind === 'xlsx') await exportExcel(reportData);
     if (kind === 'csv') exportCSV(reportData);
     if (kind === 'share') await shareReport(reportData);

@@ -195,3 +195,21 @@ h2 { font-size: 1.05rem; font-weight: 700; }
 .progress-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--primary-2), var(--primary)); }
 
 ::selection { background: rgba(255, 138, 0, 0.35); }
+
+/* Fallback enquanto a página (carregada sob demanda) é buscada. */
+.route-loading {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.route-loading::after {
+  content: '';
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid var(--card-2);
+  border-top-color: var(--primary);
+  animation: route-spin 0.7s linear infinite;
+}
+@keyframes route-spin { to { transform: rotate(360deg); } }

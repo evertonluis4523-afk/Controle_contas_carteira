@@ -20,7 +20,7 @@ export default function Splash({ onDone }: Props) {
       }}
     >
       <motion.img
-        src="/icons/icon.svg"
+        src={`${import.meta.env.BASE_URL}icons/icon.svg`}
         alt="Orange Finance"
         width={110}
         height={110}
